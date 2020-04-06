@@ -1,0 +1,34 @@
+.outerbox{
+    display: grid;
+    grid-template-columns: 150px 150px 150px ;
+    grid-template-columns: 150px 150px 150px ;
+    width: 450px;
+}
+
+
+
+.box1,.box2,.box3,.box4,.box5,.box6,.box7,.box8,.box9{
+    display: grid;
+    grid-template-columns: 50px 50px 50px ;
+    grid-template-rows: 50px 50px 50px ;
+    
+}
+.outerbox{
+    border: solid 3px black;
+
+}
+/* .box2,.box3,.box4,.box5,.box6,.box7,.box8,.box9{
+    border: solid 2px black;
+    margin: -1px;
+} */
+
+.list{
+    background: #eee;
+    text-align: center;
+
+}
+/* .list:nth-child(odd){
+    background: #999;
+}   */
+
+
