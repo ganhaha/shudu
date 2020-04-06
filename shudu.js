@@ -43,7 +43,7 @@ function myFunction() {
         rndnum = Math.floor(Math.random() * 9)
         
     }
-    console.log("hello")
+    
 
 }
 
