@@ -43,7 +43,7 @@ function myFunction() {
         rndnum = Math.floor(Math.random() * 9)
         
     }
-    "使用github 上传试试"
+    
 }
 
 
