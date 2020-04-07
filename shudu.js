@@ -43,7 +43,7 @@ function myFunction() {
         rndnum = Math.floor(Math.random() * 9)
         
     }
-    
+    "今天是个好日子 哈哈哈"
 }
 
 
