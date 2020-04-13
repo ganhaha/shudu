@@ -14,8 +14,9 @@ var i, j, k, m
 var a159 = []
 var atemp = []
 var init = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-var rndnum = init[Math.floor(Math.random() * init.length)]
+var rndnum = init[Math.floor(Math.random() * init.length)] //从init中随机取的数,每取一次数，从init中去除这个数
 //初始化数组
+
 for (i = 0; i < 81; i++) {
     a.push(0)
 }
@@ -31,36 +32,53 @@ for (i = 0; i < 3; i++) {
     }
 }
 //3号大方块
-outerfor:
-for (i = 0; i < 3; i++) {
-    for (j = 0; j < 3; j++) {
-        for (k = 0; k < 3; k++) {
-            atemp.push(a[k + i * 9])
 
-        }
-        for (k = 0; k < 3; k++) {
+try{
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            for (k = 0; k < 3; k++) {
+                atemp.push(a[k + i * 9])
 
-            atemp.push(a[60 + k * 9 + j])
-        }
-        console.log(atemp)
-        m=0
-        while (atemp.includes(init[rndnum]) == true) {
-            rndnum = Math.floor(Math.random() * init.length)
-            if(m>5){
-                
-                continue outerfor
             }
-            m++
+            for (k = 0; k < 3; k++) {
+
+                atemp.push(a[60 + k * 9 + j])
+            }
+            console.log(atemp)
+
+            // atemp.push(a[j + i * 9])
+
+            // console.log(atemp)
+            m = 0
+            while (atemp.includes(rndnum) == true) {
+                rndnum = init[Math.floor(Math.random() * init.length)]
+                if (m > 5) {
+                    // console.log('出现死循环整体跳出')
+                    throw '死循环'
+                    // continue outfor                    
+                }
+                m++
+            }
+            // ////没有什么好的迭代方法吗
+            if (typeof (rndnum) == undefined) {
+                console.log('有错误')
+                // break
+            }
+            console.log(rndnum)
+
+            // // a[7 + j * 9 + k]=init[rndnum]
+            init.splice(init.indexOf(rndnum), 1)
+
+
+            // for (j = 0; j < 3; j++) {            
+            //     atemp.push(a[60+i + j * 9])     
+            atemp = []
         }
-        ////没有什么好的迭代方法吗
-    
-        console.log(init[rndnum])
 
-        // a[7 + j * 9 + k]=init[rndnum]
-        init.splice(init.indexOf(init[rndnum]), 1)
-        atemp = []
     }
-
+}catch(e){
+    console.log(e)
 }
+
 
 console.log(a)
