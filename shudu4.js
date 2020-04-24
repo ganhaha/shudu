@@ -5,7 +5,7 @@ function shudu() {
     }
     box159(a)
     box3(a)
-    box7(a)//基本上到box7都不会有问题所以就不需要额外递归回去
+    box7(a) //基本上到box7都不会有问题所以就不需要额外递归回去
     if (box2(a) == 'no') {
         // console.log('box2无解')
         shudu()
@@ -19,7 +19,8 @@ function shudu() {
         // console.log('box6无解')
         shudu()
     } else {
-        console.log(a)
+        // console.log(a)
+        makeshudu(a)
     }
 }
 //第159大方块复制
@@ -165,7 +166,7 @@ function box2(a) {
                     rndnum = init[Math.floor(Math.random() * init.length)];
                     if (m > 5) {
                         return box2(a);
-                        
+
                     }
                     m++;
                 }
@@ -219,7 +220,7 @@ function box4(a) {
                     rndnum = init[Math.floor(Math.random() * init.length)];
                     if (m > 5) {
                         return box4(a);
-                        
+
                     }
                     m++;
                 }
@@ -272,7 +273,7 @@ function box8(a) {
                     rndnum = init[Math.floor(Math.random() * init.length)];
                     if (m > 5) {
                         return box8(a);
-                        
+
                     }
                     m++;
                 }
@@ -324,7 +325,7 @@ function box6(a) {
                     rndnum = init[Math.floor(Math.random() * init.length)];
                     if (m > 5) {
                         return box6(a);
-                        
+
                     }
                     m++;
                 }
@@ -352,5 +353,42 @@ function box6(a) {
         }
     }
 }
+//挖空生成数独题
+function makeshudu(a) {
+    console.log(a)
+    // a[Math.floor(Math.random() * 81)]
+    for (i = 0; i < 51; i++) {
+        var k = Math.floor(Math.random() * 81)
+        while (a[k] == 0) {
+            k = Math.floor(Math.random() * 81)
+        }
+        a[k] = 0
+    }
+    console.log(a)
+    showhtml(a)
+}
 
+function showhtml(a) {
+box9
+    atemp = []
+
+    for (var m = 0; m < 3; m++) {//m用来控制box1，box2.....box9
+        for (var i = 0; i < 3; i++) {//i用来控制大的列 如box1，box2，box3
+            for (var j = 0; j < 3; j++) {//j用来控制9宫格内的列
+                for (var k = 0; k < 3; k++) {//k用来控制9宫格内行增加1
+                    atemp.push(a[27 * m + 3 * i + 9 * j + k])
+                }
+            }
+            var boxnum = i + 1 + 3 * m
+            for (n = 0; n < atemp.length; n++) {
+                document.getElementsByClassName('box' + boxnum)[0].children[n].innerHTML = atemp[n]
+            }
+            // console.log('atemp:', atemp)
+            atemp = []
+        }
+    }
+
+}
 shudu()
+// makeshudu()
+// showhtml()
