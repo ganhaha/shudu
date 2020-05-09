@@ -32,6 +32,17 @@ function box159(a) {
     }
 
 }
+// var a = [
+//     8, 0, 0, 0, 0, 0, 0, 0, 0,
+//     0, 0, 3, 6, 0, 0, 0, 0, 0,
+//     0, 7, 0, 0, 9, 0, 2, 0, 0,
+//     0, 5, 0, 0, 0, 7, 0, 0, 0,
+//     0, 0, 0, 0, 4, 5, 7, 0, 0,
+//     0, 0, 0, 1, 0, 0, 0, 3, 0,
+//     0, 0, 1, 0, 0, 0, 0, 6, 8,
+//     0, 0, 8, 5, 0, 0, 0, 1, 0,
+//     0, 9, 0, 0, 0, 0, 4, 0, 0
+// ]
 
 function solveshudu(a) {
     var newArr = [];
@@ -39,43 +50,46 @@ function solveshudu(a) {
     while (a.length > 0) {
         newArr.push(a.splice(0, 9));
     }
-    // // return newArr;
-    // // console.log(newArr)
-    console.log('source:')
-    console.table(newArr)
-    // Solution(newArr)
-    // var newArr = a
-    var count = 0
-    Solution(count)
 
-    function Solution(count) {
-        // console.log('count:', count)
-        // console.table(newArr)
-        // var count
-        if (count > 80) {
-            console.log('answer:')
-            console.table(newArr)
-            // return newArr
+    var count = 0
+    var findflag = false
+    Solution(count, findflag)
+
+    function Solution(count, findflag) {
+
+
+        if (count === 81) {
+
+            shuduAnsw(newArr)
+            return
+          
+
         }
+        
         var i = parseInt(count / 9)
         var j = count % 9
-        if (newArr[i][j] == 0) {
+        if(i===9){return}
+        if (newArr[i][j] === 0) {
 
             for (var n = 1; n <= 9; n++) {
-                // newArr[i][j] = n
-                if (Isvalid(i, j, n) == '合法') {
 
-                    Solution(count + 1)
+                if (Isvalid(i, j, n) === '合法') {
+
+                    newArr[i][j] = n
+                    
+                    Solution(count + 1, findflag)
+
                 }
-                // Solution(count + 1)
             }
             newArr[i][j] = 0
+
         } else {
-            Solution(count + 1)
+            
+            Solution(count + 1, findflag)
+
         }
 
     }
-
 
     function Isvalid(a, b, n) {
         var i = a
@@ -83,59 +97,38 @@ function solveshudu(a) {
         var k = n
 
         for (var m = 0; m < 9; m++) {
-            if (newArr[m][j] == k) {
+            if (newArr[m][j] === k) {
                 return '冲突'
             }
 
 
-            if (newArr[i][m] == k) {
+            if (newArr[i][m] === k) {
                 return '冲突'
             }
 
         }
-        // for (var m = 0; m < 9; m++) {
-        //     if (i == m) {
-        //         continue
-        //     } else {
-        //         if (newArr[i][j] == newArr[m][j]) {
-        //             return '冲突'
-        //         }
-        //     }
-        //     if (j == m) {
-        //         continue
-        //     } else {
-        //         if (newArr[i][j] == newArr[i][m]) {
-        //             return '冲突'
-        //         }
-        //     }
-
-        // }
+    
         for (var p = parseInt(i / 3) * 3; p < (parseInt(i / 3) + 1) * 3; p++) {
             for (var q = parseInt(j / 3) * 3; q < (parseInt(j / 3) + 1) * 3; q++) {
 
-                if (newArr[p][q] == k) {
+                if (newArr[p][q] === k) {
                     return '冲突'
                 }
 
 
             }
         }
-        // for (var p = parseInt(i / 3) * 3; p < (parseInt(i / 3) + 1) * 3; p++) {
-        //     for (var q = parseInt(j / 3) * 3; q < (parseInt(j / 3) + 1) * 3; q++) {
-        //         if (i == p && j == q) {
-        //             continue
-        //         } else {
-        //             if (newArr[i][j] == newArr[p][q]) {
-        //                 return '冲突'
-        //             }
-        //         }
 
-        //     }
-        // }
-        newArr[i][j] = k
         return '合法'
     }
-    // console.table(newArr)
-}
+  
 
-console.log(solveshudu(shudu()))
+    function shuduAnsw(newArr){
+                console.table(newArr)
+                
+    }
+
+}
+solveshudu(shudu())
+// console.log(solveshudu(shudu()))
+// solveshudu(shudu())

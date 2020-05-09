@@ -365,14 +365,16 @@ function box6(a) {
 //挖空生成数独题
 function makeshudu(a) {
     console.log('origin:', a)
-    for (var i = 0; i < 10; i++) { //循环次数就是空格数
+    for (var i = 0; i < 70; i++) { //循环次数就是空格数
         var k = Math.floor(Math.random() * 81)
         while (a[k] == 0) {
             k = Math.floor(Math.random() * 81)
         }
         a[k] = 0
     }
+    console.log('shudu',a)
     return a
+    
     // console.table(a)
     // showhtml(a)
     // solveshudu(a)
@@ -408,60 +410,75 @@ function solveshudu(a) {
     }
     // // return newArr;
     // // console.log(newArr)
-    console.table(newArr)
+    // console.log('source:')
+    // console.table(newArr)
     // Solution(newArr)
     // var newArr = a
     var count = 0
+
     Solution(count)
 
     function Solution(count) {
         // console.log('count:', count)
         // console.table(newArr)
         // var count
-        if (count > 80) {
-            console.log('answer:', newArr)
-            // return newArr
+
+        if (count == 81) {
+
+            console.log('answer:')
+            console.table(newArr)
+            return 
+
         }
         var i = parseInt(count / 9)
         var j = count % 9
         if (newArr[i][j] == 0) {
 
             for (var n = 1; n <= 9; n++) {
-                newArr[i][j] = n
-                if (Isvalid(i, j) == '合法') {
+                // newArr[i][j] = n
+                if (Isvalid(i, j, n) == '合法') {
+                    newArr[i][j] = n
                     Solution(count + 1)
+
+
                 }
                 // Solution(count + 1)
             }
             newArr[i][j] = 0
         } else {
+
             Solution(count + 1)
+
+
         }
 
     }
 
 
-    function Isvalid(a, b) {
+    function Isvalid(a, b, n) {
         var i = a
         var j = b
+        var k = n
+
         for (var m = 0; m < 9; m++) {
-            if (i == m) {
-                continue
-            } else {
-                if (newArr[i][j] == newArr[m][j]) {
-                    return '冲突'
-                }
+            if (newArr[m][j] == k) {
+                return '冲突'
             }
-            if (j == m) {
-                continue
-            } else {
-                if (newArr[i][j] == newArr[i][m]) {
-                    return '冲突'
-                }
+
+
+            if (newArr[i][m] == k) {
+                return '冲突'
             }
 
         }
         // for (var m = 0; m < 9; m++) {
+        //     if (i == m) {
+        //         continue
+        //     } else {
+        //         if (newArr[i][j] == newArr[m][j]) {
+        //             return '冲突'
+        //         }
+        //     }
         //     if (j == m) {
         //         continue
         //     } else {
@@ -473,19 +490,31 @@ function solveshudu(a) {
         // }
         for (var p = parseInt(i / 3) * 3; p < (parseInt(i / 3) + 1) * 3; p++) {
             for (var q = parseInt(j / 3) * 3; q < (parseInt(j / 3) + 1) * 3; q++) {
-                if (i == p && j == q) {
-                    continue
-                } else {
-                    if (newArr[i][j] == newArr[p][q]) {
-                        return '冲突'
-                    }
+
+                if (newArr[p][q] == k) {
+                    return '冲突'
                 }
+
 
             }
         }
+        // for (var p = parseInt(i / 3) * 3; p < (parseInt(i / 3) + 1) * 3; p++) {
+        //     for (var q = parseInt(j / 3) * 3; q < (parseInt(j / 3) + 1) * 3; q++) {
+        //         if (i == p && j == q) {
+        //             continue
+        //         } else {
+        //             if (newArr[i][j] == newArr[p][q]) {
+        //                 return '冲突'
+        //             }
+        //         }
+
+        //     }
+        // }
+        // newArr[i][j] = k
         return '合法'
     }
     // console.table(newArr)
+
 }
 
 
@@ -496,3 +525,4 @@ function solveshudu(a) {
 // console.log(shudu())
 // makeshudu()
 // showhtml()
+console.log(solveshudu(makeshudu(shudu())))
