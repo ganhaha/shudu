@@ -1,3 +1,4 @@
+//草稿 无用
 function shudu() {
     var a = []; //整个大的数组
     for (var i = 0; i < 81; i++) {
