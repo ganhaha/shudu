@@ -14,7 +14,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/shudu6.js"
+            "program": "${workspaceFolder}/shudumaker.js"
         },
         {
             "name": "使用本机 Chrome 调试",

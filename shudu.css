@@ -1,34 +1,62 @@
+body,html {
+    padding: 0;
+    margin: 0;
+  }
+
 .outerbox{
     display: grid;
     grid-template-columns: 150px 150px 150px ;
-    grid-template-columns: 150px 150px 150px ;
-    width: 450px;
+    justify-content: center;
+    grid-template-rows:150px 150px 150px ;
+    /* border: solid 3px black; */
 }
-
-
 
 .box1,.box2,.box3,.box4,.box5,.box6,.box7,.box8,.box9{
     display: grid;
     grid-template-columns: 50px 50px 50px ;
-    grid-template-rows: 50px 50px 50px ;
-    
+    grid-template-rows: 50px 50px 50px ;  
+    /* border: solid 3px rgba(114, 12, 97, 0.712);   */    
+    /* margin: -3px; */
 }
-.outerbox{
-    border: solid 3px black;
 
-}
-/* .box2,.box3,.box4,.box5,.box6,.box7,.box8,.box9{
-    border: solid 2px black;
-    margin: -1px;
-} */
+
 
 .list{
-    background: #eee;
+    font-size: 2em;
+    background: rgb(234, 253, 237);
     text-align: center;
+    border: solid 2px chocolate;
+    margin: 0px 0px -2px -2px;
 
 }
-/* .list:nth-child(odd){
-    background: #999;
-}   */
 
-
+.inputbox{    
+    width: 45px;
+    height: 45px;  
+    float: left;
+    font-size: 1.1em;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+.btn{
+    display: grid;
+    
+    grid-template-columns: 150px 150px  ;
+    justify-content: center;
+    margin-top: 50px;
+    
+}
+.showtext{
+    display: grid;
+    grid-template-columns: 450px;
+    justify-content: center;
+    justify-items: center;
+}
+/* #inputbox{    
+    width: 45px;
+    height: 45px;  
+    float: left;
+    
+ 
+} */

@@ -22,7 +22,7 @@ function shuduhtml() {
     //     8, 0, 0, 0, 5, 2, 0, 0, 3
     // ]
     //生成数独方阵
-    document.getElementsByClassName('showtext')[0].innerHTML = '' //答案提示清除
+    // document.getElementsByClassName('showtext')[0].innerHTML = '' //答案提示清除
 
     function solveshudu(a) {
         var i, j, n
@@ -173,28 +173,34 @@ function shuduhtml() {
 
     function showhtml(a) {
 
-        var atemp = []
+        // var atemp = []
 
-        for (var m = 0; m < 3; m++) { //m用来控制box1，box2.....box9
-            for (var i = 0; i < 3; i++) { //i用来控制大的列 如box1，box2，box3
-                for (var j = 0; j < 3; j++) { //j用来控制9宫格内的列
-                    for (var k = 0; k < 3; k++) { //k用来控制9宫格内行增加1
-                        atemp.push(a[27 * m + 3 * i + 9 * j + k])
-                    }
-                }
-                var boxnum = i + 1 + 3 * m
-                for (var n = 0; n < atemp.length; n++) {
-                    document.getElementsByClassName('box' + boxnum)[0].children[n].innerHTML = atemp[n]
+        // for (var m = 0; m < 3; m++) { //m用来控制box1，box2.....box9
+        //     for (var i = 0; i < 3; i++) { //i用来控制大的列 如box1，box2，box3
+        //         for (var j = 0; j < 3; j++) { //j用来控制9宫格内的列
+        //             for (var k = 0; k < 3; k++) { //k用来控制9宫格内行增加1
+        //                 atemp.push(a[27 * m + 3 * i + 9 * j + k])
+        //             }
+        //         }
+        //         var boxnum = i + 1 + 3 * m
+        //         for (var n = 0; n < atemp.length; n++) {
+        //             document.getElementsByClassName('box' + boxnum)[0].children[n].innerHTML = atemp[n]
 
-                    if (document.getElementsByClassName('box' + boxnum)[0].children[n].innerHTML === '0') {
-                        document.getElementsByClassName('box' + boxnum)[0].children[n].innerHTML = ' <input type="text" class= inputbox maxlength=1 >'
-                    } //把是0的单元格变成可填数
-                }
-                // console.log('atemp:', atemp)
-                atemp = []
+        //             if (document.getElementsByClassName('box' + boxnum)[0].children[n].innerHTML === '0') {
+        //                 document.getElementsByClassName('box' + boxnum)[0].children[n].innerHTML = ' <input type="text" class= inputbox maxlength=1 >'
+        //             } //把是0的单元格变成可填数
+        //         }
+        //         // console.log('atemp:', atemp)
+        //         atemp = []
+        //     }
+        // }
+        for (let i = 0; i < 81; i++) {
+            document.getElementsByClassName('shudubox')[i].innerHTML = a[i]
+            if (document.getElementsByClassName('shudubox')[i].innerHTML === '0') {
+                document.getElementsByClassName('shudubox')[i].innerHTML = '<input type="text" class= inputbox maxlength=1 >'
             }
-        }
 
+        }
     }
 
     //因为存在赋值覆盖的问题，所以把答案比对放到HTML生成之后
@@ -218,12 +224,12 @@ function shuduhtml() {
 function shuducheck() {
     var answerhtml = []
     var answer = []
-    var temp = []
+    
     var i, j = 0
     var re = /^[0-9]+.?[0-9]*$/ //正则表达式判断填入的是否是数字
 
     for (i = 0; i < 81; i++) {
-        if (document.getElementsByClassName('list')[i].innerText === '') {
+        if (document.getElementsByClassName('shudubox')[i].innerText === '') {
             if (document.getElementsByClassName('inputbox')[j].value === '') {
                 alert('请填入数字！')
                 document.getElementsByClassName('showtext')[0].innerHTML = '' //答案提示清除
@@ -239,22 +245,22 @@ function shuducheck() {
 
 
         } else {
-            answerhtml.push(document.getElementsByClassName('list')[i].innerText)
+            answerhtml.push(document.getElementsByClassName('shudubox')[i].innerText)
         }
     }
 
-    for (var m = 0; m < 3; m++) { //m用来控制box1，box2.....box9
-        for (var i = 0; i < 3; i++) { //i用来控制大的列 如box1，box2，box3
-            for (var j = 0; j < 3; j++) { //j用来控制9宫格内的列
-                for (var k = 0; k < 3; k++) { //k用来控制9宫格内行增加1
-                    temp.push(parseInt(answerhtml[27 * m + 3 * i + 9 * j + k]))
-                }
-            }
-        }
-    } //这个是把html的9宫格转变成横的数组
+    // for (var m = 0; m < 3; m++) { //m用来控制box1，box2.....box9
+    //     for (var i = 0; i < 3; i++) { //i用来控制大的列 如box1，box2，box3
+    //         for (var j = 0; j < 3; j++) { //j用来控制9宫格内的列
+    //             for (var k = 0; k < 3; k++) { //k用来控制9宫格内行增加1
+    //                 temp.push(parseInt(answerhtml[27 * m + 3 * i + 9 * j + k]))
+    //             }
+    //         }
+    //     }
+    // } //这个是把html的9宫格转变成横的数组
 
-    while (temp.length > 0) {
-        answer.push(temp.splice(0, 9));
+    while (answerhtml.length > 0) {
+        answer.push(answerhtml.splice(0, 9));
     } //这是是把html的答案变成二维数组
 
     console.table(answer)
